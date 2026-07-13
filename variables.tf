@@ -14,17 +14,6 @@ EOT
     server_id        = string
     start_ip_address = string
   }))
-  # --- Unconfirmed validation candidates, derived from azurerm_mssql_firewall_rule's provider source ---
-  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
-  # or a path that crosses a list-typed block (needs its own for_each wrapping).
-  # Review, translate into a real validation{} block above, and delete once confirmed.
-  # path: server_id
-  #   source:    [from validate.ServerID] !ok
-  # path: server_id
-  #   source:    [from validate.ServerID] err != nil
-  # path: start_ip_address
-  #   source:    validation.All(...) - no translation rule yet, add one
-  # path: end_ip_address
-  #   source:    validation.All(...) - no translation rule yet, add one
+  # Note: 4 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
